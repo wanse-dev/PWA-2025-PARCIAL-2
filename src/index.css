@@ -43,11 +43,9 @@ h2 {
 
 a {
   text-decoration: inherit;
-
-  color: #fff;
-  background-color: #222;
+  color: inherit;
 }
 a:hover {
-  background-color: #333;
-  transition: 0.3s background-color;
+  opacity: 0.5;
+  transition: 0.3s opacity;
 }

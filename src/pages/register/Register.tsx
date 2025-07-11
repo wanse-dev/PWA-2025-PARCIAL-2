@@ -1,5 +1,6 @@
 import "./Register.css";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
@@ -32,7 +33,7 @@ export const Register = () => {
     resolver: joiResolver(validationsSchema),
   });
 
-  const navigate = useNavigate(); // con navigate me ahorro de usar Link, y me permite usarlo en onSubmit.
+  const navigate = useNavigate(); // uso navigate para poder incorporarlo en el onSubmit.
 
   const onSubmit = async (data: RegisterFormInputs) => {
     const sendData = {
@@ -45,9 +46,9 @@ export const Register = () => {
         sendData
       );
       console.log("User created:", response.data);
-      navigate("/post");
-    } catch (err) {
-      console.error("Error creating user:", err);
+      navigate("/posts");
+    } catch (error) {
+      console.error("Error creating user:", error);
     }
   };
 
@@ -70,9 +71,11 @@ export const Register = () => {
         {errors.email && <span>{errors.email.message}</span>}
 
         <button type="submit" className="submit-button">
-          Create
+          Create user
         </button>
       </form>
+
+      <Link to="/posts">Continue without register any user</Link>
     </div>
   );
 };
