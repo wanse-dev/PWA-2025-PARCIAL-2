@@ -1,0 +1,15 @@
+.users {
+  margin-left: clamp(72px, 20vw, 244px);
+  transition: margin-left 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 850px) {
+  .users {
+    margin-left: 0;
+    margin-bottom: 60px;
+  }
+}

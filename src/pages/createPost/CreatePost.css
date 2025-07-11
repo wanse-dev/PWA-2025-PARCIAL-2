@@ -1,0 +1,11 @@
+.create-post {
+  margin-left: clamp(72px, 20vw, 244px);
+  transition: margin-left 0.3s;
+}
+
+@media (max-width: 850px) {
+  .create-post {
+    margin-left: 0;
+    margin-bottom: 60px;
+  }
+}

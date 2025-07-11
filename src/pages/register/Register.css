@@ -9,7 +9,7 @@
   padding: 6rem 1rem;
   box-sizing: border-box;
   background-color: #f5f5f5;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .register h1 {
@@ -49,7 +49,7 @@
   padding: 0.75rem;
   color: #fff;
   background-color: #0353a9;
-  
+
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -64,12 +64,12 @@
 
 .register span {
   color: #dc3545;
-  font-size: .9rem;
+  font-size: 0.9rem;
   margin-top: -0.5rem;
   user-select: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .register {
     padding: 6rem 0.5rem;
     border-radius: 0;

@@ -49,3 +49,23 @@ a:hover {
   opacity: 0.5;
   transition: 0.3s opacity;
 }
+
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .layout {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 400px) {
+}
