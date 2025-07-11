@@ -2,6 +2,7 @@ import "./Users.css";
 import enable from "../../assets/enable.png";
 import disable from "../../assets/disable.png";
 import { UserCard } from "../../components/userCard/UserCard";
+import { PageTitle } from "../../components/pageTitle/PageTitle";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -70,10 +71,7 @@ export const Users = () => {
 
   return (
     <section className="users">
-      <div className="user-header">
-        <h1 className="title">User Directory</h1>
-        <p className="subtitle">Manage all registered users</p>
-      </div>
+      <PageTitle />
 
       <div className="users-list">
         {loading && <p>Loading...</p>}
