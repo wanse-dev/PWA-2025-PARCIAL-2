@@ -16,6 +16,31 @@
   --border-radius-bottom-right: 0 0 var(--border-radius-right) 0;
 }
 
+.user-header {
+  background-color: #d6d0d0;
+  padding: 1.5rem 2rem;
+  border-left: 6px solid #3f0d19;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  color: #1f1f1f;
+  font-family: "Segoe UI", sans-serif;
+
+  width: min(max(350px, 60%), 100%);
+}
+
+.user-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.user-header p {
+  font-size: 1rem;
+  color: #444;
+  margin-top: 0.25rem;
+}
+
 .users .users-list {
   width: 100%;
   max-width: 1200px;
@@ -40,6 +65,20 @@
 
   width: min(max(350px, 60%), 100%);
   box-sizing: border-box;
+}
+
+.user-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+  filter: grayscale(100%);
+
+  transition: all 0.3s ease;
+}
+
+.users .users-list .user-card-container button:disabled {
+  cursor: default;
+  opacity: 0.4;
 }
 
 .users .users-list .user-card-container .user-card {
@@ -70,7 +109,7 @@
   justify-content: center;
   height: 50%;
   width: 100%;
-  background-color: #777;
+  background-color: #666;
   border: none;
   transition: background-color 0.3s ease;
 }
@@ -83,16 +122,14 @@
   border-radius: var(--border-radius-bottom-right);
 }
 
-.users .users-list .user-card-container button:first-child:hover {
-  background-color: #6b7280;
-}
-.users .users-list .user-card-container button:last-child:hover {
-  background-color: #9ca3af;
+.users .users-list .user-card-container button:hover {
+  background-color: #3f0d19;
 }
 
 .users .users-list .user-card-container button img {
   width: 40px;
   padding: 5px;
+  transition: opacity 0.3s;
 }
 
 @media (max-width: 850px) {
