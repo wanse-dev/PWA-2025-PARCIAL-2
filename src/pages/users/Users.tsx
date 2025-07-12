@@ -71,15 +71,16 @@ export const Users = () => {
 
   return (
     <section className="users">
-      <PageTitle />
-
+      <PageTitle
+        title="User Directory"
+        subtitle="Manage all registered users"
+      />
       <div className="users-list">
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
         {data.map((item) => {
           const id = item._id || item.email;
           const isDisabled = !item.isActive;
-
           return (
             <div key={id} className="user-card-container">
               <UserCard
