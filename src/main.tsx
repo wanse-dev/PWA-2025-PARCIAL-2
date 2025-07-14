@@ -29,10 +29,7 @@ const router = createBrowserRouter([
         path: "/posts",
         element: <Posts />,
       },
-      {
-        path: "/postDashboard",
-        element: <PostDashboard />,
-      },
+      { path: "/post-dashboard/:id", element: <PostDashboard /> },
       {
         path: "/createPost",
         element: <CreatePost />,

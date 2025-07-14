@@ -14,6 +14,7 @@ type PostProps = {
   title: string;
   content: string;
   likes: string[];
+  edited: boolean;
 };
 
 export const Posts = () => {
@@ -61,6 +62,7 @@ export const Posts = () => {
                 title={item.title}
                 content={item.content}
                 likes={item.likes}
+                edited={item.edited}
               />
             </div>
           );
