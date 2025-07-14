@@ -25,7 +25,15 @@
   flex-direction: column;
   align-items: center;
 
-  gap: 1rem;
+  gap: 2rem;
+}
+
+.posts .posts-list .post-card-container {
+  display: flex;
+  justify-content: space-between;
+
+  width: min(max(350px, 60%), 100%);
+  box-sizing: border-box;
 }
 
 @media (max-width: 850px) {

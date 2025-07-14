@@ -1,6 +1,8 @@
 import "./Posts.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { PageTitle } from "../../components/pageTitle/PageTitle";
+import { PostCard } from "../../components/postCard/PostCard";
 
 type PostProps = {
   _id?: string;
@@ -19,6 +21,26 @@ export const Posts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/posts");
+      setData(response.data.data);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error);
+      } else {
+        setError(new Error("Unknown error"));
+      }
+    } finally {
+      setLoading(false);
+      console.log("Data fetched successfully.");
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <section className="posts">
       <PageTitle title="Posts" subtitle="See all posts from every user" />
@@ -29,7 +51,19 @@ export const Posts = () => {
             {error.name}: {error.message}
           </p>
         )}
-        <div className="user-card-container"></div>
+        {data.map((item) => {
+          const id = item._id;
+          return (
+            <div key={id} className="post-card-container">
+              <PostCard
+                author={item.author}
+                title={item.title}
+                content={item.content}
+                likes={item.likes}
+              />
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -12,6 +12,24 @@ type PostProps = {
   likes: string[];
 };
 
-export const PostCard: React.FC<PostProps> = ({}) => {
-  return <div className={"post-card"}></div>;
+export const PostCard: React.FC<PostProps> = ({
+  author,
+  title,
+  content,
+  likes,
+}) => {
+  return (
+    <div className="post-card">
+      <header className="post-title">
+        <strong>{title}</strong>
+      </header>
+      <main className="post-content">{content}</main>
+      <footer className="post-footer">
+        <div className="post-author">By: {author.username}</div>
+        <div className="post-likes">
+          <button>Likes: {likes.length}</button>
+        </div>
+      </footer>
+    </div>
+  );
 };
