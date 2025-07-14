@@ -8,7 +8,6 @@ import { Posts } from "./pages/posts/Posts";
 import { PostDashboard } from "./pages/postDashboard/PostDashboard";
 import { CreatePost } from "./pages/createPost/CreatePost";
 import { Users } from "./pages/users/Users";
-import { UserDashboard } from "./pages/userDashboard/UserDashboard";
 import { FallBack } from "./pages/fallBack/FallBack";
 
 const router = createBrowserRouter([
@@ -41,10 +40,6 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users />,
-      },
-      {
-        path: "/userDashboard",
-        element: <UserDashboard />,
       },
     ],
   },
