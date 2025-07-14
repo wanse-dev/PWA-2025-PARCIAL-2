@@ -45,6 +45,15 @@ export const Register = () => {
         "http://localhost:3000/api/users",
         sendData
       );
+      const createdUser = response.data;
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          _id: createdUser._id,
+          username: createdUser.username,
+          email: createdUser.email,
+        })
+      );
       console.log("User created:", response.data);
       navigate("/posts");
     } catch (error) {

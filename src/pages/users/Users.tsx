@@ -77,7 +77,11 @@ export const Users = () => {
       />
       <div className="users-list">
         {loading && <p>Loading...</p>}
-        {error && <p>Error: {error.message}</p>}
+        {error && (
+          <p>
+            {error.name}: {error.message}
+          </p>
+        )}
         {data.map((item) => {
           const id = item._id || item.email;
           const isDisabled = !item.isActive;

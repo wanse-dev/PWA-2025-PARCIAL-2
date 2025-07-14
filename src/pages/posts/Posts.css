@@ -1,6 +1,31 @@
 .posts {
   margin-left: clamp(72px, 20vw, 244px);
   transition: margin-left 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  min-height: 100vh;
+  gap: 3rem;
+
+  --border-radius-right: 1.2rem;
+  --border-radius-top-right: 0 var(--border-radius-right) 0 0;
+  --border-radius-bottom-right: 0 0 var(--border-radius-right) 0;
+}
+
+.posts .posts-list {
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
 }
 
 @media (max-width: 850px) {
