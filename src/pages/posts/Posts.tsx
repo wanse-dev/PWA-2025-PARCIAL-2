@@ -56,6 +56,7 @@ export const Posts = () => {
           return (
             <div key={id} className="post-card-container">
               <PostCard
+                _id={item._id}
                 author={item.author}
                 title={item.title}
                 content={item.content}

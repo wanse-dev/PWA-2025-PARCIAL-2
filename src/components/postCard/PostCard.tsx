@@ -1,7 +1,9 @@
 import "./PostCard.css";
 import React from "react";
+import { Link } from "react-router";
 
 type PostProps = {
+  _id?: string;
   author: {
     _id: string;
     username: string;
@@ -13,6 +15,7 @@ type PostProps = {
 };
 
 export const PostCard: React.FC<PostProps> = ({
+  _id,
   author,
   title,
   content,
@@ -21,7 +24,9 @@ export const PostCard: React.FC<PostProps> = ({
   return (
     <div className="post-card">
       <header className="post-title">
-        <strong>{title}</strong>
+        <Link to={`/PostDashboard/${_id}`}>
+          <strong>{title}</strong>
+        </Link>
       </header>
       <main className="post-content">{content}</main>
       <footer className="post-footer">
