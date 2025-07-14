@@ -69,11 +69,14 @@ export const Users = () => {
     updateUserStatus(userId, false);
   };
 
+  const storedUser = localStorage.getItem("user");
+  const currentUser = storedUser ? JSON.parse(storedUser) : null;
+
   return (
     <section className="users">
       <PageTitle
         title="User Directory"
-        subtitle="Manage all registered users"
+        subtitle={"Registered user ID: " + currentUser._id + " ---- And name: " + currentUser.username}
       />
       <div className="users-list">
         {loading && <p>Loading...</p>}
