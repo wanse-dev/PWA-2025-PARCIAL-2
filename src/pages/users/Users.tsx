@@ -51,7 +51,6 @@ export const Users = () => {
       console.log(
         `User ${userId} status updated to ${isActive ? "active" : "inactive"}.`
       );
-      
     } catch (error) {
       if (error instanceof Error) {
         setError(error);
@@ -78,11 +77,13 @@ export const Users = () => {
   const username = currentUser?.username || "";
   const isActive = currentUser?.isActive || false;
 
+  console.log(`USER REGISTERED: ${username}  -  ID: ${userId}  -  STATUS: ${isActive}`);
+
   return (
     <section className="users">
       <PageTitle
         title="User Directory"
-        subtitle={`Username: ${username}  -  Registered user ID: ${userId}  -  Is user active? ${isActive}`}
+        subtitle="Manage all users"
       />
       <div className="users-list">
         {loading && <p>Loading...</p>}
