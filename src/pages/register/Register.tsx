@@ -76,7 +76,9 @@ export const Register = () => {
         </button>
       </form>
 
-      <Link to="/posts">Continue without register any user</Link>
+      <Link to="/posts" onClick={() => localStorage.removeItem("user")}>
+        Continue without register any user
+      </Link>
     </div>
   );
 };

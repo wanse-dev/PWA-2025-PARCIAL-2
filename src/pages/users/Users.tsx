@@ -43,13 +43,15 @@ export const Users = () => {
       const endpoint = isActive
         ? `http://localhost:3000/api/users/enable/${userId}`
         : `http://localhost:3000/api/users/disable/${userId}`;
-      await axios.patch(endpoint);
+      const response = await axios.patch(endpoint);
       setData((prev) =>
         prev.map((user) => (user._id === userId ? { ...user, isActive } : user))
       );
+      localStorage.setItem("user", JSON.stringify(response.data.data));
       console.log(
         `User ${userId} status updated to ${isActive ? "active" : "inactive"}.`
       );
+      
     } catch (error) {
       if (error instanceof Error) {
         setError(error);
@@ -72,11 +74,15 @@ export const Users = () => {
   const storedUser = localStorage.getItem("user");
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
 
+  const userId = currentUser?._id || "Not registered";
+  const username = currentUser?.username || "";
+  const isActive = currentUser?.isActive || false;
+
   return (
     <section className="users">
       <PageTitle
         title="User Directory"
-        subtitle={"Registered user ID: " + currentUser._id + " ---- And name: " + currentUser.username}
+        subtitle={`Username: ${username}  -  Registered user ID: ${userId}  -  Is user active? ${isActive}`}
       />
       <div className="users-list">
         {loading && <p>Loading...</p>}
