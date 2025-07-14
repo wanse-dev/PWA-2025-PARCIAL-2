@@ -32,9 +32,10 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  color: #fff;
-  background-color: #888;
 
+  background-color: #fff;
+
+  border-left: 6px solid #763645;
   border-radius: 1rem var(--border-radius-right) var(--border-radius-right) 1rem;
   transition: background-color 0.3s ease;
 
@@ -72,7 +73,7 @@
 }
 
 .users .users-list .user-card-container .user-card-actions button:hover {
-  background-color: #3f0d19;
+  background-color: #555;
 }
 
 .users .users-list .user-card-container .user-card-actions button img {

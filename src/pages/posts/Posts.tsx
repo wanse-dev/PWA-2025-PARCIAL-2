@@ -1,6 +1,6 @@
 import "./Posts.css";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../../config/axios";
 import { PageTitle } from "../../components/pageTitle/PageTitle";
 import { PostCard } from "../../components/postCard/PostCard";
 
@@ -23,7 +23,7 @@ export const Posts = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/posts");
+      const response = await axiosInstance.get("http://localhost:3000/api/posts");
       setData(response.data.data);
     } catch (error) {
       if (error instanceof Error) {

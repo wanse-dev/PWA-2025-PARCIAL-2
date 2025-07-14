@@ -5,7 +5,7 @@
 
   border-left: 6px solid #763645;
   border-radius: 0.5rem;
-  background-color: #d6d0d0;
+  background-color: #fff;
   color: #333;
   font-family: "Segoe UI", sans-serif;
 
@@ -76,4 +76,14 @@
   .post-likes
   button:hover {
   background-color: #9b4b5e;
+}
+
+.posts
+  .posts-list
+  .post-card-container
+  .post-card
+  .post-footer
+  .post-likes
+  button:active {
+  transform: scale(0.97);
 }

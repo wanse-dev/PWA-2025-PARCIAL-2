@@ -7,7 +7,7 @@
   color: #1f1f1f;
   font-family: "Segoe UI", sans-serif;
 
-  width: min(max(350px, 60%), 100%);
+  width: min(max(800px, 60%), 100%);
 }
 
 h1 {

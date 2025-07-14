@@ -1,11 +1,95 @@
 import "./CreatePost.css";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
+import Joi from "joi";
+import axiosInstance from "../../config/axios";
+import { PageTitle } from "../../components/pageTitle/PageTitle";
+
+type CreatePostFormInputs = {
+  author: {
+    _id: string;
+    username: string;
+    email: string;
+  };
+  title: string;
+  content: string;
+};
+
+const validationsSchema = Joi.object<CreatePostFormInputs>({
+  title: Joi.string().required().messages({
+    "string.empty": "Title is required",
+  }),
+  content: Joi.string().required().messages({
+    "string.empty": "Content is required",
+  }),
+});
 
 export const CreatePost = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreatePostFormInputs>({
+    resolver: joiResolver(validationsSchema),
+  });
+
+  const navigate = useNavigate();
+
+  const storedUser = localStorage.getItem("user");
+  const currentUser = storedUser ? JSON.parse(storedUser) : null;
+  const isDisabled = !currentUser;
+
+  const onSubmit = async (data: CreatePostFormInputs) => {
+    if (!currentUser) return;
+
+    const sendData = {
+      author: currentUser,
+      title: data.title,
+      content: data.content,
+    };
+    try {
+      const response = await axiosInstance.post(
+        "http://localhost:3000/api/posts",
+        sendData
+      );
+      console.log("Post created: ", response.data);
+      navigate("/posts");
+    } catch (error) {
+      console.error("Error creating post: ", error);
+    }
+  };
+
   return (
     <section className="create-post">
-      <h1>Create Post Page</h1>
-      <Link to="/posts">Back to Posts</Link>
+      <PageTitle title="Publish post" subtitle="Publish a new post" />
+      <div className="posts-form-container">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            {...register("title")}
+            className="text-input"
+            placeholder="Enter title"
+          />
+          {errors.title && <span>{errors.title.message}</span>}
+
+          <textarea
+            {...register("content")}
+            className="text-area"
+            placeholder="Type your content..."
+            rows={6}
+          />
+
+          {errors.content && <span>{errors.content.message}</span>}
+
+          <button
+            type="submit"
+            className={isDisabled ? "user-disabled" : "submit-button"}
+            disabled={isDisabled}
+          >
+            {isDisabled ? "User not registered" : "Create post"}
+          </button>
+        </form>
+      </div>
     </section>
   );
 };

@@ -10,10 +10,6 @@
   width: 100%;
   min-height: 100vh;
   gap: 3rem;
-
-  --border-radius-right: 1.2rem;
-  --border-radius-top-right: 0 var(--border-radius-right) 0 0;
-  --border-radius-bottom-right: 0 0 var(--border-radius-right) 0;
 }
 
 .posts .posts-list {
@@ -25,7 +21,7 @@
   flex-direction: column;
   align-items: center;
 
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .posts .posts-list .post-card-container {

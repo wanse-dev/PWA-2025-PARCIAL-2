@@ -41,14 +41,14 @@
 
 .register input:focus {
   outline: none;
-  border-color: #0353a9;
+  border-color: #3f0d19;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 .register .submit-button {
   padding: 0.75rem;
   color: #fff;
-  background-color: #0353a9;
+  background-color: #3f0d19;
 
   border: none;
   border-radius: 0.25rem;

@@ -3,7 +3,7 @@ import enable from "../../assets/enable.png";
 import disable from "../../assets/disable.png";
 import { UserCard } from "../../components/userCard/UserCard";
 import { PageTitle } from "../../components/pageTitle/PageTitle";
-import axios from "axios";
+import axiosInstance from "../../config/axios";
 import { useState, useEffect } from "react";
 
 type UserProps = {
@@ -20,7 +20,7 @@ export const Users = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/users");
+      const response = await axiosInstance.get("http://localhost:3000/api/users");
       setData(response.data.data);
     } catch (error) {
       if (error instanceof Error) {
@@ -43,7 +43,7 @@ export const Users = () => {
       const endpoint = isActive
         ? `http://localhost:3000/api/users/enable/${userId}`
         : `http://localhost:3000/api/users/disable/${userId}`;
-      const response = await axios.patch(endpoint);
+      const response = await axiosInstance.patch(endpoint);
       setData((prev) =>
         prev.map((user) => (user._id === userId ? { ...user, isActive } : user))
       );
