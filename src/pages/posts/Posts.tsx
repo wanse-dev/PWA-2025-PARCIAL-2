@@ -24,7 +24,9 @@ export const Posts = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get("http://localhost:3000/api/posts");
+      const response = await axiosInstance.get(
+        "http://localhost:3000/api/posts"
+      );
       setData(response.data.data);
     } catch (error) {
       if (error instanceof Error) {
