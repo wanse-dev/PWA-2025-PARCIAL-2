@@ -1,69 +1,16 @@
-# React + TypeScript + Vite
+# PWA-2025-PARCIAL-2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Comando para la ejecución:
+- npm run dev
 
-Currently, two official plugins are available:
+## Dependencias instaladas:
+- npm install axios joi @hookform/resolvers react-hook-form react-router
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Aclaraciones:
+Para poder ingresar, es posible tanto registrar un usuario como continuar sin registrar ninguno. En el caso de no haber registrado un usuario nuevo, no será posible dar likes, ni modificar o crear posts. 
 
-## Expanding the ESLint configuration
+Para poder ser un usuario registrado, es posible habilitando el usuario que queremos en el panel de usuarios. Al hacer esto, podremos desbloquear las funcionalidades exclusivas de usuarios registrados (que mencioné arriba).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Para poder editar un post, es necesario hacer click en el título del mismo (siendo obviamente un usuario registrado). Luego, podremos modificar el título y el contenido del mismo. Al hacer esto, el post se editará y cambiará el autor del mismo quedando marcado como "edited".
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+El sitio es responsive, ya que hice que el layout se adapte según el tamaño de la pantalla.
