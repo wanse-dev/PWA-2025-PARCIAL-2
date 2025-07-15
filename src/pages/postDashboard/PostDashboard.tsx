@@ -62,7 +62,7 @@ export const PostDashboard = () => {
       reset({
         title: data.title,
         content: data.content,
-      });
+      }); 
     }
   }, [data, reset]);
 

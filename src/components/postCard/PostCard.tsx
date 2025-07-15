@@ -1,6 +1,6 @@
 import "./PostCard.css";
 import React from "react";
-import { Link } from "react-router";
+import { data, Link } from "react-router";
 
 type PostProps = {
   _id?: string;
@@ -23,6 +23,11 @@ export const PostCard: React.FC<PostProps> = ({
   likes,
   edited,
 }) => {
+  const storedUser = localStorage.getItem("user");
+  const currentUser = storedUser ? JSON.parse(storedUser) : null;
+
+  const userId = currentUser?._id;
+
   return (
     <div className="post-card">
       <header className="post-title">
@@ -37,7 +42,12 @@ export const PostCard: React.FC<PostProps> = ({
           <i>{edited ? ` (edited)` : ""}</i>
         </div>
         <div className="post-likes">
-          <button>Likes: {likes.length}</button>
+          <button
+            className={!userId ? "likes-disabled" : "submit-button"}
+            disabled={!userId}
+          >
+            Likes: {likes.length}
+          </button>
         </div>
       </footer>
     </div>

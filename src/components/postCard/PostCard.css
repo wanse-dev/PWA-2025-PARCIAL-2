@@ -87,3 +87,18 @@
   button:active {
   transform: scale(0.97);
 }
+
+.posts
+  .posts-list
+  .post-card-container
+  .post-card
+  .post-footer
+  .post-likes
+  .likes-disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  border: none;
+  opacity: 0.6;
+  pointer-events: none;
+}

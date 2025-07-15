@@ -20,7 +20,9 @@ export const Users = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get("http://localhost:3000/api/users");
+      const response = await axiosInstance.get(
+        "http://localhost:3000/api/users"
+      );
       setData(response.data.data);
     } catch (error) {
       if (error instanceof Error) {
@@ -38,53 +40,50 @@ export const Users = () => {
     fetchData();
   }, []);
 
-  const updateUserStatus = async (userId: string, isActive: boolean) => {
+  const enableUser = async (userId: string) => {
     try {
-      const endpoint = isActive
-        ? `http://localhost:3000/api/users/enable/${userId}`
-        : `http://localhost:3000/api/users/disable/${userId}`;
-      const response = await axiosInstance.patch(endpoint);
+      const response = await axiosInstance.patch(
+        `http://localhost:3000/api/users/enable/${userId}`
+      );
+      const updatedUser = response.data.data;
       setData((prev) =>
-        prev.map((user) => (user._id === userId ? { ...user, isActive } : user))
+        prev.map((user) =>
+          user._id === userId ? { ...user, isActive: true } : user
+        )
       );
-      localStorage.setItem("user", JSON.stringify(response.data.data));
-      console.log(
-        `User ${userId} status updated to ${isActive ? "active" : "inactive"}.`
-      );
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      console.log("User stored and activated:", updatedUser);
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error);
-        console.error("Error updating user status:", error.message);
-      } else {
-        setError(new Error("Failed to update user status"));
-        console.error("Error updating user status: Unknown error");
-      }
+      console.error("Error activating user:", error);
     }
   };
 
-  const enableUser = (userId: string) => {
-    updateUserStatus(userId, true);
+  const disableUser = async (userId: string) => {
+    try {
+      await axiosInstance.patch(
+        `http://localhost:3000/api/users/disable/${userId}`
+      );
+      setData((prev) =>
+        prev.map((user) =>
+          user._id === userId ? { ...user, isActive: false } : user
+        )
+      );
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        const currentUser = JSON.parse(storedUser);
+        if (currentUser._id === userId) {
+          localStorage.removeItem("user");
+          console.log("User deactivated and removed from localStorage");
+        }
+      }
+    } catch (error) {
+      console.error("Error deactivating user:", error);
+    }
   };
-
-  const disableUser = (userId: string) => {
-    updateUserStatus(userId, false);
-  };
-
-  const storedUser = localStorage.getItem("user");
-  const currentUser = storedUser ? JSON.parse(storedUser) : null;
-
-  const userId = currentUser?._id || "Not registered";
-  const username = currentUser?.username || "";
-  const isActive = currentUser?.isActive || false;
-
-  console.log(`USER REGISTERED: ${username}  -  ID: ${userId}  -  STATUS: ${isActive}`);
 
   return (
     <section className="users">
-      <PageTitle
-        title="User Directory"
-        subtitle="Manage all users"
-      />
+      <PageTitle title="User Directory" subtitle="Manage all users" />
       <div className="users-list">
         {loading && <p>Loading...</p>}
         {error && (
