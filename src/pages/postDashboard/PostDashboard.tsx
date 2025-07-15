@@ -28,6 +28,9 @@ export const PostDashboard = () => {
 
   const { id } = useParams();
 
+  const userStored = localStorage.getItem("user");
+  const userRegistered = JSON.parse(userStored || "{}");
+
   const {
     register,
     handleSubmit,
@@ -69,8 +72,6 @@ export const PostDashboard = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: ModifyPostFormInputs) => {
-    const userRegistered = JSON.parse(localStorage.getItem("user") || "{}");
-
     const sendData = {
       title: data.title,
       content: data.content,
@@ -112,8 +113,12 @@ export const PostDashboard = () => {
           />
           {errors.content && <span>{errors.content.message}</span>}
 
-          <button type="submit" className="submit-button">
-            Modify post
+          <button
+            type="submit"
+            className={!userStored ? "user-disabled" : "submit-button"}
+            disabled={!userStored}
+          >
+            {!userStored ? "User not registered" : "Modify post"}
           </button>
         </form>
       </div>
