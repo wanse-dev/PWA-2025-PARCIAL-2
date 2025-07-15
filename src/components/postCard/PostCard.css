@@ -102,3 +102,14 @@
   opacity: 0.6;
   pointer-events: none;
 }
+
+.posts
+  .posts-list
+  .post-card-container
+  .post-card
+  .post-footer
+  .post-likes.liked {
+  background-color: #ffcccb;
+  color: #b30000;
+  border: 1px solid #b30000;
+}

@@ -28,8 +28,8 @@ export const PostDashboard = () => {
 
   const { id } = useParams();
 
-  const userStored = localStorage.getItem("user");
-  const userRegistered = JSON.parse(userStored || "{}");
+  const storedUser = localStorage.getItem("user");
+  const userRegistered = storedUser ? JSON.parse(storedUser) : null;
 
   const {
     register,
@@ -115,10 +115,10 @@ export const PostDashboard = () => {
 
           <button
             type="submit"
-            className={!userStored ? "user-disabled" : "submit-button"}
-            disabled={!userStored}
+            className={!storedUser ? "user-disabled" : "submit-button"}
+            disabled={!storedUser}
           >
-            {!userStored ? "User not registered" : "Modify post"}
+            {!storedUser ? "User not registered" : "Modify post"}
           </button>
         </form>
       </div>

@@ -1,6 +1,7 @@
 import "./PostCard.css";
-import React from "react";
-import { data, Link } from "react-router";
+import React, { useState } from "react";
+import { Link } from "react-router";
+import axiosInstance from "../../config/axios";
 
 type PostProps = {
   _id?: string;
@@ -25,8 +26,26 @@ export const PostCard: React.FC<PostProps> = ({
 }) => {
   const storedUser = localStorage.getItem("user");
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
-
   const userId = currentUser?._id;
+
+  const [localLikes, setLocalLikes] = useState<string[]>(likes);
+
+  const alreadyLiked = userId && localLikes.includes(userId);
+
+  const handleLike = async () => {
+    if (!userId || !_id) return;
+
+    try {
+      const response = await axiosInstance.patch(`/posts/like/${_id}`, {
+        userId,
+      });
+
+      const updatedLikes = response.data.data.likes;
+      setLocalLikes(updatedLikes);
+    } catch (error) {
+      console.error("Error toggling like: ", error);
+    }
+  };
 
   return (
     <div className="post-card">
@@ -43,10 +62,17 @@ export const PostCard: React.FC<PostProps> = ({
         </div>
         <div className="post-likes">
           <button
-            className={!userId ? "likes-disabled" : "submit-button"}
-            disabled={!userId}
+            onClick={handleLike}
+            className={
+              !currentUser
+                ? "likes-disabled"
+                : alreadyLiked
+                ? "submit-button liked"
+                : "submit-button"
+            }
+            disabled={!currentUser}
           >
-            Likes: {likes.length}
+            {alreadyLiked ? "Unlike" : "Like"} ({localLikes.length})
           </button>
         </div>
       </footer>
