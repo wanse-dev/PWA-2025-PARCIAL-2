@@ -97,6 +97,12 @@ export const PostDashboard = () => {
         subtitle="Edit and manage your selected post"
       />
       <div className="post-dashboard-container">
+        {loading && <p>Loading...</p>}
+        {error && (
+          <p>
+            {error.name}: {error.message}
+          </p>
+        )}
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             {...register("title")}
