@@ -62,22 +62,26 @@ export const PostDashboard = () => {
       reset({
         title: data.title,
         content: data.content,
-      }); 
+      });
     }
   }, [data, reset]);
 
   const navigate = useNavigate();
 
   const onSubmit = async (data: ModifyPostFormInputs) => {
+    const userRegistered = JSON.parse(localStorage.getItem("user") || "{}");
+
     const sendData = {
       title: data.title,
       content: data.content,
+      author: userRegistered._id,
     };
     try {
       const response = await axiosInstance.patch(
         `/posts/update/${id}`,
         sendData
       );
+
       console.log("Post modified: ", response.data);
       navigate("/posts");
     } catch (error) {
