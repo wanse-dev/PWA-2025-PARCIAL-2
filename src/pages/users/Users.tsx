@@ -2,6 +2,7 @@ import "./Users.css";
 import enable from "../../assets/enable.png";
 import disable from "../../assets/disable.png";
 import { UserCard } from "../../components/userCard/UserCard";
+import { UserCardLoader } from "../../components/userCard/loader/UserCardLoader";
 import { PageTitle } from "../../components/pageTitle/PageTitle";
 import axiosInstance from "../../config/axios";
 import { getStoredUser } from "../../config/user";
@@ -87,7 +88,16 @@ export const Users = () => {
     <section className="users">
       <PageTitle title="User Directory" subtitle="Manage all users" />
       <div className="users-list">
-        {loading && <p>Loading...</p>}
+        {loading && (
+          <>
+            <UserCardLoader />
+            <UserCardLoader />
+            <UserCardLoader />
+            <UserCardLoader />
+            <UserCardLoader />
+            <UserCardLoader />
+          </>
+        )}
         {error && (
           <p>
             {error.name}: {error.message}

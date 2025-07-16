@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axiosInstance from "../../config/axios";
 import { PageTitle } from "../../components/pageTitle/PageTitle";
 import { PostCard } from "../../components/postCard/PostCard";
+import { PostCardLoader } from "../../components/postCard/loader/PostCardLoader";
 
 type PostProps = {
   _id?: string;
@@ -48,7 +49,13 @@ export const Posts = () => {
     <section className="posts">
       <PageTitle title="Posts" subtitle="See all posts from every user" />
       <div className="posts-list">
-        {loading && <p>Loading...</p>}
+        {loading && (
+          <>
+            <PostCardLoader />
+            <PostCardLoader />
+            <PostCardLoader />
+          </>
+        )}
         {error && (
           <p>
             {error.name}: {error.message}

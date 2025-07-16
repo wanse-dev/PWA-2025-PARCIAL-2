@@ -1,0 +1,89 @@
+.user-card-container.loader {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  background-color: #fff;
+
+  border-left: 6px solid #763645;
+  border-radius: 1rem var(--border-radius-right) var(--border-radius-right) 1rem;
+  transition: background-color 0.3s ease;
+
+  width: min(max(350px, 60%), 100%);
+  box-sizing: border-box;
+}
+
+.user-card-container.loader .user-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.user-card-container.loader .user-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  gap: 0;
+}
+
+.skeleton {
+  background: #e2e2e2;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shimmer 1.5s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.line {
+  width: 80%;
+  height: 16px;
+}
+
+.line.short {
+  width: 60%;
+  height: 14px;
+}
+
+.action-button {
+  width: 100%;
+  height: 50%;
+  background-color: #ccc;
+}
+
+.action-button.top {
+  border-radius: var(--border-radius-top-right);
+}
+
+.action-button.bottom {
+  border-radius: var(--border-radius-bottom-right);
+}
