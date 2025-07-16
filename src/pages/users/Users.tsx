@@ -4,6 +4,9 @@ import disable from "../../assets/disable.png";
 import { UserCard } from "../../components/userCard/UserCard";
 import { PageTitle } from "../../components/pageTitle/PageTitle";
 import axiosInstance from "../../config/axios";
+import { getStoredUser } from "../../config/user";
+import { setStoredUser } from "../../config/user";
+import { removeStoredUser } from "../../config/user";
 import { useState, useEffect } from "react";
 
 type UserProps = {
@@ -45,14 +48,13 @@ export const Users = () => {
       const response = await axiosInstance.patch(
         `http://localhost:3000/api/users/enable/${userId}`
       );
-      const updatedUser = response.data.data;
       setData((prev) =>
         prev.map((user) =>
           user._id === userId ? { ...user, isActive: true } : user
         )
       );
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      console.log("User stored and activated:", updatedUser);
+      setStoredUser(response.data.data);
+      console.log("User stored and activated:", response.data.data);
     } catch (error) {
       console.error("Error activating user:", error);
     }
@@ -68,11 +70,11 @@ export const Users = () => {
           user._id === userId ? { ...user, isActive: false } : user
         )
       );
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        const currentUser = JSON.parse(storedUser);
-        if (currentUser._id === userId) {
-          localStorage.removeItem("user");
+
+      const user = getStoredUser();
+      if (user) {
+        if (user._id === userId) {
+          removeStoredUser("user");
           console.log("User deactivated and removed from localStorage");
         }
       }

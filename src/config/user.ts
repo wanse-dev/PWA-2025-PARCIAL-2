@@ -23,3 +23,12 @@ export const setStoredUser = (response : any) => {
     return null;
   }
 };
+
+export const removeStoredUser = (user : string) => {
+  try {
+    localStorage.removeItem(user);
+  } catch (error) {
+    console.error("Error removing user:", error);
+    return null;
+  }
+}

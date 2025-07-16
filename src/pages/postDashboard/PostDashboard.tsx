@@ -31,7 +31,7 @@ export const PostDashboard = () => {
 
   const navigate = useNavigate();
 
-  const user = getStoredUser();
+  const storedUser = getStoredUser();
 
   const {
     register,
@@ -75,7 +75,7 @@ export const PostDashboard = () => {
     const sendData = {
       title: data.title,
       content: data.content,
-      author: user,
+      author: storedUser,
     };
     try {
       const response = await axiosInstance.patch(
@@ -121,10 +121,10 @@ export const PostDashboard = () => {
 
           <button
             type="submit"
-            className={!user ? "user-disabled" : "submit-button"}
-            disabled={!user}
+            className={!storedUser ? "user-disabled" : "submit-button"}
+            disabled={!storedUser}
           >
-            {!user ? "User not registered" : "Modify post"}
+            {!storedUser ? "User not registered" : "Modify post"}
           </button>
         </form>
       </div>

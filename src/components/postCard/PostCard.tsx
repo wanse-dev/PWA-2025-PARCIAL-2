@@ -2,6 +2,7 @@ import "./PostCard.css";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import axiosInstance from "../../config/axios";
+import { getStoredUser } from "../../config/user";
 
 type PostProps = {
   _id?: string;
@@ -24,9 +25,8 @@ export const PostCard: React.FC<PostProps> = ({
   likes,
   edited,
 }) => {
-  const storedUser = localStorage.getItem("user");
-  const currentUser = storedUser ? JSON.parse(storedUser) : null;
-  const userId = currentUser?._id;
+  const user = getStoredUser();
+  const userId = user?._id;
 
   const [localLikes, setLocalLikes] = useState<string[]>(likes);
 
@@ -64,13 +64,13 @@ export const PostCard: React.FC<PostProps> = ({
           <button
             onClick={handleLike}
             className={
-              !currentUser
+              !user
                 ? "likes-disabled"
                 : alreadyLiked
                 ? "submit-button liked"
                 : "submit-button"
             }
-            disabled={!currentUser}
+            disabled={!user}
           >
             {alreadyLiked ? "Unlike" : "Like"} ({localLikes.length})
           </button>

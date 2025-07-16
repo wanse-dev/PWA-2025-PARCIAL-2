@@ -37,13 +37,13 @@ export const CreatePost = () => {
 
   const navigate = useNavigate();
 
-  const user = getStoredUser();
+  const StoredUser = getStoredUser();
 
   const onSubmit = async (data: CreatePostFormInputs) => {
-    if (!user) return;
+    if (!StoredUser) return;
 
     const sendData = {
-      author: user,
+      author: StoredUser,
       title: data.title,
       content: data.content,
     };
@@ -82,10 +82,10 @@ export const CreatePost = () => {
 
           <button
             type="submit"
-            className={!user ? "user-disabled" : "submit-button"}
-            disabled={!user}
+            className={!StoredUser ? "user-disabled" : "submit-button"}
+            disabled={!StoredUser}
           >
-            {!user ? "User not registered" : "Create post"}
+            {!StoredUser ? "User not registered" : "Create post"}
           </button>
         </form>
       </div>
