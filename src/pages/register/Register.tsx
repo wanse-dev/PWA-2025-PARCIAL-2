@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import axiosInstance from "../../config/axios";
+import { setStoredUser } from "../../config/user";
 
 type RegisterFormInputs = {
   username: string;
@@ -45,7 +46,7 @@ export const Register = () => {
         "http://localhost:3000/api/users",
         sendData
       );
-      localStorage.setItem("user", JSON.stringify(response.data.data));
+      setStoredUser(response.data.data);
       console.log("User created:", response.data);
       navigate("/posts");
     } catch (error) {

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import axiosInstance from "../../config/axios";
+import { getStoredUser } from "../../config/user";
 import { PageTitle } from "../../components/pageTitle/PageTitle";
 
 type CreatePostFormInputs = {
@@ -36,15 +37,13 @@ export const CreatePost = () => {
 
   const navigate = useNavigate();
 
-  const storedUser = localStorage.getItem("user");
-  const currentUser = storedUser ? JSON.parse(storedUser) : null;
-  const isDisabled = !currentUser;
+  const user = getStoredUser();
 
   const onSubmit = async (data: CreatePostFormInputs) => {
-    if (!currentUser) return;
+    if (!user) return;
 
     const sendData = {
-      author: currentUser,
+      author: user,
       title: data.title,
       content: data.content,
     };
@@ -83,10 +82,10 @@ export const CreatePost = () => {
 
           <button
             type="submit"
-            className={isDisabled ? "user-disabled" : "submit-button"}
-            disabled={isDisabled}
+            className={!user ? "user-disabled" : "submit-button"}
+            disabled={!user}
           >
-            {isDisabled ? "User not registered" : "Create post"}
+            {!user ? "User not registered" : "Create post"}
           </button>
         </form>
       </div>

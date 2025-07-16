@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import axiosInstance from "../../config/axios";
+import { getStoredUser } from "../../config/user";
 import { PageTitle } from "../../components/pageTitle/PageTitle";
 
 type ModifyPostFormInputs = {
@@ -28,8 +29,9 @@ export const PostDashboard = () => {
 
   const { id } = useParams();
 
-  const storedUser = localStorage.getItem("user");
-  const userRegistered = storedUser ? JSON.parse(storedUser) : null;
+  const navigate = useNavigate();
+
+  const user = getStoredUser();
 
   const {
     register,
@@ -69,13 +71,11 @@ export const PostDashboard = () => {
     }
   }, [data, reset]);
 
-  const navigate = useNavigate();
-
   const onSubmit = async (data: ModifyPostFormInputs) => {
     const sendData = {
       title: data.title,
       content: data.content,
-      author: userRegistered._id,
+      author: user,
     };
     try {
       const response = await axiosInstance.patch(
@@ -121,10 +121,10 @@ export const PostDashboard = () => {
 
           <button
             type="submit"
-            className={!storedUser ? "user-disabled" : "submit-button"}
-            disabled={!storedUser}
+            className={!user ? "user-disabled" : "submit-button"}
+            disabled={!user}
           >
-            {!storedUser ? "User not registered" : "Modify post"}
+            {!user ? "User not registered" : "Modify post"}
           </button>
         </form>
       </div>
