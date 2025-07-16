@@ -37,7 +37,7 @@ export const Posts = () => {
       }
     } finally {
       setLoading(false);
-      console.log("Data fetched successfully.");
+      console.debug("Data fetched successfully.");
     }
   };
 

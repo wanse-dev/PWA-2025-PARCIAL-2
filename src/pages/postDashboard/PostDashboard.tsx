@@ -54,7 +54,7 @@ export const PostDashboard = () => {
       }
     } finally {
       setLoading(false);
-      console.log("Data fetched successfully.");
+      console.debug("Data fetched successfully.");
     }
   };
 
@@ -83,10 +83,10 @@ export const PostDashboard = () => {
         sendData
       );
 
-      console.log("Post modified: ", response.data);
+      console.debug("Post modified: ", response.data);
       navigate("/posts");
     } catch (error) {
-      console.error("Error modifing post: ", error);
+      console.debug("Error modifing post: ", error);
     }
   };
 

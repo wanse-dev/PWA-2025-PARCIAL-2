@@ -47,10 +47,10 @@ export const Register = () => {
         sendData
       );
       setStoredUser(response.data.data);
-      console.log("User created:", response.data);
+      console.debug("User created:", response.data);
       navigate("/posts");
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.debug("Error creating user:", error);
     }
   };
 

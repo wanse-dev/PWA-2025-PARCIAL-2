@@ -36,7 +36,7 @@ export const Users = () => {
       }
     } finally {
       setLoading(false);
-      console.log("Data fetched successfully.");
+      console.debug("Data fetched successfully.");
     }
   };
 
@@ -55,9 +55,9 @@ export const Users = () => {
         )
       );
       setStoredUser(response.data.data);
-      console.log("User stored and activated:", response.data.data);
+      console.debug("User stored and activated:", response.data.data);
     } catch (error) {
-      console.error("Error activating user:", error);
+      console.debug("Error activating user:", error);
     }
   };
 
@@ -80,7 +80,7 @@ export const Users = () => {
         }
       }
     } catch (error) {
-      console.error("Error deactivating user:", error);
+      console.debug("Error deactivating user:", error);
     }
   };
 

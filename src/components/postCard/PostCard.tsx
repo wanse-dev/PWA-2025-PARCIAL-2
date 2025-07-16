@@ -43,7 +43,7 @@ export const PostCard: React.FC<PostProps> = ({
       const updatedLikes = response.data.data.likes;
       setLocalLikes(updatedLikes);
     } catch (error) {
-      console.error("Error toggling like: ", error);
+      console.debug("Error toggling like: ", error);
     }
   };
 

@@ -52,10 +52,10 @@ export const CreatePost = () => {
         "http://localhost:3000/api/posts",
         sendData
       );
-      console.log("Post created: ", response.data);
+      console.debug("Post created: ", response.data);
       navigate("/posts");
     } catch (error) {
-      console.error("Error creating post: ", error);
+      console.debug("Error creating post: ", error);
     }
   };
 

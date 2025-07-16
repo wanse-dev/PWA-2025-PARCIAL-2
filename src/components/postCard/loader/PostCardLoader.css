@@ -1,6 +1,5 @@
 .post-card-loader {
-  width: 60%;
-  max-width: 700px;
+  width: min(max(800px, 60%), 100%);
   padding: 1rem;
   border-left: 6px solid #763645;
   border-radius: 0.5rem;
